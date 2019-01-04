@@ -2,14 +2,14 @@
 
 Problem | Solution |
 ---------|----------|
- Designing Service Layers | Module Pattern |
- Overly Complicated Object Interfaces (DOM) | Facade Pattern (jquery) |
- Visibility into State Changes | Observer Pattern |
+Designing Service Layers | Module Pattern |
+Overly Complicated Object Interfaces (DOM) | Facade Pattern (jquery) |
+Visibility into State Changes | Observer Pattern |
 
- ### Types of Patterns common in Javascript
+### Types of Patterns common in Javascript
 
- #### Creational
-  - Constructor Pattern 
+#### Creational
+- Constructor Pattern 
     - to create new objects with their own object scope
     - sample is in Creational/task.js
     ```javascript
@@ -30,7 +30,7 @@ Problem | Solution |
     }
     ```
 
-  - Module Pattern
+- Module Pattern
     - Object Literal
     ```javascript
     var Repository = function() {
@@ -46,7 +46,7 @@ Problem | Solution |
         }
     }
     ```
-  - Factory Pattern
+- Factory Pattern
     - simplify object creation of multiple object types
     ```javascript
     var RepoFactory = function () {
@@ -62,7 +62,7 @@ Problem | Solution |
 
     module.exports = new RepoFactory();
     ```
-  - Singleton
+- Singleton
     - Node.js uses the CommonJS
     ```javascript
     var SingletonFactory = (function(){
@@ -87,7 +87,8 @@ Problem | Solution |
     ```
 
 #### Structural
-  - Decorator Pattern
+
+- Decorator Pattern
     - Used to add new functionality to an existing object, w/o being obtrusive
     - wraps an object
     - protects existing objects
@@ -127,13 +128,138 @@ Problem | Solution |
     }
     ```
 
-  - Facade
-  - Flyweight
+- Facade
+    - simplified interface
+    - jquery as an example
+    - can be combine with the module pattern
+
+    ```javascript
+    const TYPE_MUSIC = "music";
+    const TYPE_MOVIE = "movie";
+    const TYPE_TV = "tv";
+    const TYPE_BOOK = "book";
+
+    class CultureFacade {
+        
+        constructor(type) {
+            this.type = type;
+        }
+
+        get(id) {
+            switch (this.type) {
+                case TYPE_MUSIC: {
+                    return this.tryToReturn(this.findMusic, id);
+                }
+
+                case TYPE_MOVIE: {
+                return this.tryToReturn(this.findMovie, id);
+                }
+
+                case TYPE_TV: {
+                return this.tryToReturn(this.findTVShow, id);
+                }
+
+                case TYPE_BOOK: {
+                    return this.tryToReturn(this.findBook, id);
+                }
+
+                default: {
+                    throw new Error("No type set!");
+                }
+            }
+        }
+
+        get error() {
+            return { status: 404, error: `No item with this id found` };
+        }
+
+        findMusic(id) {
+            const db = new FetchMusic();
+            return db.fetch(id);
+        }
+        
+        findMovie(id) {
+            return new GetMovie(id);
+        }
+        
+        findTVShow(id) {
+            return getTvShow(id);
+        }
+        
+        findBook(id) {
+            return booksResource.find(item => item.id === id);
+        }
+
+        tryToReturn(func, id) {
+            const result = func.call(this, id);
+
+            return new Promise((ok, err) => !!result
+                ? ok(result)
+                : err(this._error));
+        }
+    }
+    ```
+
+- Flyweight
+    - shares data across objects (like the prototype)
+    - only if you have a large number of objects
+    ```javascript
+    var Task = function(data) {
+    this.name = data.name;
+    
+    // Since other properties of this task
+    // will not be always unique, we can
+    // use a flyweight
+
+    this.flyweight = FlyweightFactory
+    .get(data.project,
+        data.priority,
+        data.user,
+        data.completed
+    )
+
+    this.project = data.project;
+    this.priority = data.priority;
+    this.user = data.user;
+    this.completed = data.completed;
+    }
+
+    function Flyweight(project, priority, user, completed) {
+        this.project = project;
+        this.priority = priority;
+        this.user = user;
+        this.completed = completed;
+    };
+
+    var FlyweightFactory = function() {
+        var flyweights = {};
+
+        var get = function(project, priority, user, completed) {
+            if(!flyweights[project + priority + user + completed]) {
+                flyweights[project + priority + user + completed] = 
+                new Flyweight(project, priority, user, completed);
+            }
+            return flyweights[project + priority + user + completed];
+        };
+
+        var getCount = function() {
+            var count = 0;
+            for(var f in flyweights) count++;
+            return count;
+        }
+
+        // Revealing Module Pattern
+        return {
+            get: get,
+            getCount: getCount
+        }
+    }();
+    ```
 
 #### Behavioral
-  - Command
-  - Mediator
-  - Observer
+- Command
+- Mediator
+- Observer
 
 
 ### Other Notes
