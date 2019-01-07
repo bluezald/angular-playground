@@ -258,8 +258,130 @@ Visibility into State Changes | Observer Pattern |
 
 #### Behavioral
 - Command
+    - decouples the execution
+    - allows undo operations
+    ```javascript
+    var repo = {
+        tasks: {},
+
+        commands: [],
+
+        get: function(id) {
+            console.log("Getting task: " + id);
+            return { name: "New Task from DB" }
+        },
+
+        save: function(task) {
+            repo.tasks[task.id] = task;
+            console.log("Saving " + task.name + " into the db");
+        },
+
+        replay: function() {
+            for(var i=0; i < repo.commands.length; i++) {
+                var command = repo.commands[i];
+                repo.executeNoLog(command.name, command.obj);
+            }
+        }
+    }
+
+    repo.execute = function(name) {
+
+        var args = Array.prototype.slice.call(arguments, 1);
+
+        repo.commands.push({
+            name: name,
+            obj: args[0]
+        });
+
+        if(repo[name]) {
+            return repo[name].apply(repo, args);
+        }
+
+        return false;
+    };
+
+    repo.execute("save", {
+        id: 1,
+        name: "Task 1",
+        completed: false
+    });
+
+    ```
 - Mediator
+    - controls objects' communication
+    ```javascript
+    var mediator = (function() {
+        var channels = {};
+        var subscribe = function(channel, context, func) {
+            if(!mediator.channels[channel]) {
+                mediator.channels[channel] = [];
+            }
+            mediator.channels[channel].push({
+                context: context,
+                func: func
+            });
+        }
+        var publish = function(channel) {
+            if(!this.channels[channel]) {
+                return false;
+            }
+            var args = Array.prototype.slice.call(arguments, 1);
+
+            for(var i = 0; i < mediator.channels[channel].length; i++) {
+                var sub = mediator.channels[channel][i];
+                sub.func.apply(sub.context, args);
+            }
+        }
+        return {
+            channels: {},
+            subscribe: subscribe,
+            publish: publish
+        };
+    }());
+    ```
 - Observer
+    - allows loosely coupled system
+    - one object is the focal point and multiple objects watch the changes
+    ```javascript
+    // I won't add all the code here, but basically
+    // you create an observer list
+    function ObserverList() {
+        this.observerList = [];
+    };
+
+    // You decorate the object which can be observed
+    // with handlers that can notify the observers
+
+    var ObservableTask = function(data) {
+        Task.call(this, data);
+        this.observers = new ObserverList();
+    };
+
+    ObservableTask.prototype.addObserver = function(observer) {
+        this.observers.add(observer);
+    };
+
+    ObservableTask.prototype.remobeObserver = function(observer) {
+        this.observers.removeAt(this.observers.indexOf(observer, 0));
+    };
+
+    // This will notify the observers
+    ObservableTask.prototype.notify = function(context) {
+        var observerCount = this.observers.count();
+        for(var i=0; i < observerCount; i++) {
+            this.observers.get(i)(context);
+        }
+    };
+
+    // So the usage would be
+    var task1 = new ObservableTask({name: "create a demo for observer pattern", user: "Jon"});
+    var ns = new notificationService();
+    task1.addObserver(ns.update);
+
+    // So when there's an event in task1
+    // notification service's method will be called also
+
+    ```
 
 
 ### Other Notes
@@ -271,3 +393,12 @@ Visibility into State Changes | Observer Pattern |
 }());
 ```
 - Object.create() - method creates a new object, using an existing object as the prototype of the newly created object.
+
+- To Document a function:
+```javascript
+/**
+ * Description of code here...
+ * !param {x} - parameter x description here
+ * !param {y} - parameter y description here
+ */
+```
