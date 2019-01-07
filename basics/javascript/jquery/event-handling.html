@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Handling</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="event-style.css" type="text/css" />
+</head>
+<body>
+    <div id="WorkArea">
+        <h5 class="clickable">Work Area</h5>
+        <hr />
+        <input type="button" class="clickable" value="Click Me" />
+        <p class="clickable">Click me, too!</p>
+        <p>This is some more text with an embedded <span class="clickable">clickable</span> element. </p>
+    </div>
+
+    <div id="Messages">
+            <h5>Messages</h5>
+            <hr />
+        </div>
+</body>
+<script>
+    $(function() {
+        var showEventMessage = function(options) {
+            options = $.extend({
+                eventType: 'CLICK',
+                eventTarget: this,
+                suffix: '<br/>'
+            }, options);
+
+            var message = options.eventType + ' : ' + 
+                        (options.eventTarget.nodeName || 'unknown') +
+                        options.suffix;
+            $('#Messages').append(message);
+
+        };
+
+        // Basic Sample of event handling
+        // $('.clickable')
+        //     .click(function() {
+        //         showEventMessage.call(this, { eventType: event.type });
+        //     })
+        //     .dblclick(function() {
+        //         showEventMessage.call(this, { eventType: event.type });
+        //     })
+        //     .mousedown(function() {
+        //         showEventMessage.call(this, { eventType: event.type });
+        //         event.stopPropagation();
+        //         event.preventDefault();
+        //     });
+
+        // Sample for Namespace
+        $('.clickable')
+            .on('click.demo dblclick.demo mousedown.demo', function(event) {
+                showEventMessage.call(this, { eventType: event.type });
+                // if(!event.isPropagationStopped() &&
+                //     !event.isImmediatePropagationStopped() &&
+                //     !event.isDefaultPrevented()) {
+                //     showEventMessage.call(this, { eventType: event.type });
+                //     event.stopPropagation();
+                //     }
+            })
+            .off('dblclick.demo')
+            .on('dblclick.test', function(event) {
+                console.log('this is trigger with dblclick.test');
+            });
+
+        // Sample for Custom Events
+        // $('.clickable')
+        //     .on('click', function(event) {
+        //         // code here...
+        //         var $this = $(this), 
+        //         clickCount = ($this.data('clickcount') || 0) +1;
+
+        //         if(clickCount === 3) {
+        //             $this.trigger('click3');
+        //         }
+        //     })
+        //     .on('click3', function(event) {
+        //         $(this).addClass('highlight');
+        //         console.log('This is a custom event when the element is clicked 3x');
+        //     });
+
+    });
+</script>
+</html>

@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Functions</title>
+    <style>
+        #theCanvas { background-image: -moz-radial-gradient(30px 30px, #FFF, #EEF); }
+    </style>
+</head>
+<body>
+    <canvas id="theCanvas" width="640" height="480">
+        Attention! Your browser does not support the Canvas.
+    </canvas>
+</body>
+<script>
+_KSM = 
+{
+    draw: function(left, top) {
+        var canvas = document.getElementById("theCanvas");
+        if(canvas.getContext) {
+            var context = canvas.getContext("2d");
+            context.strokeStyle = "black";
+            context.fillStyle = "silver";
+            context.fillRect(left, top, 100, 100);
+            context.strokeRect(left, top, 100, 100);
+        }
+    }
+}
+// _KSM.draw();
+_KSM.draw(530, 370);
+</script>
+</html>
