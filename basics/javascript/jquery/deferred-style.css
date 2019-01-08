@@ -28,5 +28,10 @@
 }
 
 #messages {
-    top: 300px;
+    position: absolute;
+    width: 630px;
+    height: 200px;
+    top: 280px;
+    left: 10px;
+    overflow-y: auto;
 }

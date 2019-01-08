@@ -1,8 +1,5 @@
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Using jQuery Deferred Objects</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="deferred-style.css" type="text/css" />
@@ -26,8 +23,9 @@
             $('#messages')
                 .append(options.error ? 'Error: ' : '')
                 .append(options.message)
-                .append(<br />);
+                .append('<br />');
         };
+
         var loadSection = function(options) {
             var defer = $.Deferred();
             var $div;
@@ -35,31 +33,60 @@
             if(typeof options !== 'object') {
                 msg = 'Expecting parameter object';
                 showMessage({message: msg, error: true});
-                return defer.reject({statusText: msg});
+                return defer.resolve({statusText: msg});
             }
             options.selector = options.selector || '';
             options.url = options.url || '';
+            options.dynamic = options.dynamic || false;
             if(options.url === '') {
-                return defer.reject({statusText: 'Missing URL'})
+                msg = 'Missing URL';
+                showMessage({message: msg, error: true});
+                return defer.resolve({statusText: msg});
             }
             $div = $(options.selector)
             if($div.length > 0) {
-                $div.load(options.url, function(){
-                    defer.resolve();
-                });
+                // $div.load(options.url, function(){
+                //     defer.resolve();
+                // });
+                $.get(options.url, function(){}, 'html')
+                    .done(function(result) {
+                        $div.html(result);
+                        if(!options.dynamic) {
+                            defer.resolve();
+                        }
+                    })
+                    .fail(function(result) {
+                        msg = 'Could not load URL: ' + options.url;
+                        showMessage({message: msg, error: true});
+                    });
+                if(options.dynamic) {
+                    $div.off('complete, failure')
+                        .on('complete', function(event) {
+                            defer.resolve();
+                        })
+                        .on('failure', function(event, result) {
+                            msg = 'Dynamic content: ' + result.statusText;
+                            showMessage({message: msg, error: true});
+                            defer.resolve(result);
+                        });
+                }
             } else {
-                defer.reject({statusText: 'Error in selector'});
+                msg = 'Error in selector';
+                showMessage({message: msg, error: true});
+                defer.resolve({statusText: 'Error in selector'});
             }
-            return defer;
+            return defer.promise();
             // return $.get(options.url, function(result) {
             //     $(options.selector).html(result);
             // }, 'html');
         }
         $('#load').click(function() {
             $.when(
-                loadSection({selector: '#section1', url: 'deferred-objects-content-1.html'}),
+                showMessage({message: 'Starting process'}),
+                loadSection({selector: '#section1', url: 'deferred-objects-content-1.html', dynamic: true}),
                 loadSection({selector: '#section2', url: 'deferred-objects-content-2.html'}),
-                loadSection({selector: '#section3', url: 'deferred-objects-content-3.html'})
+                loadSection({selector: '#section3', url: 'deferred-objects-content-3.html', dynamic: true}),
+                showMessage({message: 'Done processing'})
             )
             .promise()
             .fail(function(result) {

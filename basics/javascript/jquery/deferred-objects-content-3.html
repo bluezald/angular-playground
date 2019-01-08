@@ -10,4 +10,14 @@
         This is content #3
     </div>
 </body>
+<script>
+$(function() {
+    setTimeout(function() {
+        $('#content3')
+            .append('<hr />')
+            .append('Some really important information that you need to read')
+            .trigger('failure', {statusText: 'Content 3 Triggered error'});
+    }, 3000);
+});
+</script>
 </html>

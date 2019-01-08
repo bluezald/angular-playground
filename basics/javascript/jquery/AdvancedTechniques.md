@@ -103,7 +103,16 @@ $.when(
 });
 ```
 #### Creating a Deferred Object
-
+```javascript
+var loadSection = function(options) {
+    var defer = $.Deferred();
+    if(shouldResolve()) {
+        return defer.resolve({statusText: 'Status Resolved'});
+    }
+    // some other code for defer object
+    return defer;
+}
+```
 
 ## Other Notes
 - Duplicate code is a breeding ground for maintenance nightmares.
