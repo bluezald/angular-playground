@@ -1,0 +1,19 @@
+{
+  "name": "BestPractices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "express": "4.16.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
