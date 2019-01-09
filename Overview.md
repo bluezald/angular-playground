@@ -75,3 +75,22 @@ ng generate service
 - Use Lazy Loading
 - Use VS Code
 - Don't touch the DOM directly
+
+***
+
+## Decorator
+- function that adds metadata to a class, its members or its method arguments
+- Prefixed with an @
+
+# Checklists
+
+## Component: Class
+- Use PascalCasing
+- Append Component to the name
+- export keyword
+- camelCase for the properties
+- camelCase for the methods
+
+## Component: Metadata
+- Prefix with @; Suffix with ()
+

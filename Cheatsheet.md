@@ -17,4 +17,4 @@ ng serve --open
 
 ### Styling up your Project
 - getbootstrap.com
-- fontawesome.com
+- fontawesome.com [Cheatsheet](https://fontawesome.com/cheatsheet)

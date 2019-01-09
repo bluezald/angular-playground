@@ -10,3 +10,6 @@ That would be the high-level roadmap.
 
 ## Quickstart
 Before anything else, let's start from the official angular quickstart [tutorial](https://angular.io/guide/quickstart)
+
+# Notes
+- AngularJS refers to the javascript code of Angular which are the versions 1.x and Angular refers to the newer version of Angular. And uses Typescript.
