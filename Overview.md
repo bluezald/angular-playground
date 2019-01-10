@@ -135,6 +135,45 @@ export interface IProduct {
 ## Lifecycle Hook
 - OnInit interface
 
+## Service
+- a class with a focused purpose
+- applied using the dependency injection
+- add the @Injectable decorator
+
+## Observables and other Reactive Extensions
+- by convention, add a dollar sign after an observable variable like: ```source$```
+- and observable won't start emitting until there's a subscriber
+
+### Promises vs Observable
+- Promise provides a single future value, observable emits multiple values over time.
+- Promise is not lazy, Observable is lazy
+- Promise is cancellable, Observable is cancellable
+- Observable supports map, filter, reduce and more.
+
+### AppModule
+```javascript
+@NgModule({
+    declarations: [ // Use specific to this module
+        AppComponent,
+        ProductListComponent,
+        ConvertToSpacesPipe,
+        StarComponent
+    ],
+    imports: [ // external modules
+        BrowserModule,
+        FormsModule,
+        HttpClientModule
+    ],
+    bootstrap: [AppComponent]
+})
+```
+### Subscribing to an Observable
+```javascript
+x.subscribe(nextFn)
+x.subscribe(nextFn, errorFn)
+x.subscribe(nextFn, errorFn, completeFn)
+```
+
 # Checklists
 
 ## Component: Class
