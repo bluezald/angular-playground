@@ -82,6 +82,59 @@ ng generate service
 - function that adds metadata to a class, its members or its method arguments
 - Prefixed with an @
 
+
+## Binding
+
+```html
+<h1>{{pageTitle}}</h1> <!-- template expression -->
+```
+- One way binding - from component class property to an element property
+
+### Property Binding
+```html
+<img [src]='product.imageUrl'>
+```
+### Event Binding
+```html
+<button class='btn btn-primary' (click)='toggleImage()'>
+    Show Image
+</button>
+```
+### Two-way Binding
+- known as banana in a box **[()]**
+```html
+<input [(ngModel)]='listFilter'>
+```
+- also make sure you import FormsModule in your AppModule
+```javascript
+import { FormsModule } from '@angular/forms';
+```
+### Getters and Setters
+- if you need to perform additional operation when a property is modified, you can use Two-Way Binding with getters and setters
+```javascript
+_listFilter: string;
+get listFilter(): string {
+    return this._listFilter;
+}
+set listFilter(value: string) {
+    this._listFilter = value;
+}
+```
+
+## Directives
+### for...of vs for...in
+- **for...of** iterates over the iterable objects, such as an array
+- **for...in** iterates over the properties of an object
+
+## Interface
+```javascript
+export interface IProduct {
+
+}
+```
+## Lifecycle Hook
+- OnInit interface
+
 # Checklists
 
 ## Component: Class
@@ -94,3 +147,8 @@ ng generate service
 ## Component: Metadata
 - Prefix with @; Suffix with ()
 
+## Data Binding:
+- Interpolation: {{pageTitle}}
+- Property Binding: <img [src]='product.imageUrl'>
+- Event Binding: <button (click)='toggleImage()'>
+- Two-Way Binding: <input [(ngModel)]='listFilter' />
