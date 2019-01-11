@@ -45,6 +45,19 @@ ng generate component componentName
 ```sh
 ng generate service
 ```
+- Creating Module
+```sh
+ng g m /products/product --flat -m app.module # generate a product module in the app module
+```
+### Key Angular CLI Commands
+- ng help
+- ng new
+- ng serve
+- ng generate
+- ng test
+- ng e2e
+- ng build
+
 ### Server-Side Rendering
 - reduces the initial download size
 - reduces render time
@@ -167,6 +180,11 @@ export interface IProduct {
     bootstrap: [AppComponent]
 })
 ```
+- declarations—this application's lone component.
+- imports—import BrowserModule to have browser specific services such as DOM rendering, sanitization, and location.
+- providers—the service providers.
+- bootstrap—the root component that Angular creates and inserts into the index.html host web page.
+
 ### Subscribing to an Observable
 ```javascript
 x.subscribe(nextFn)
@@ -253,7 +271,7 @@ export class ProductDetailGuard implements CanActivate {
 ```
 - generate guard using the cli
 ```sh
-ng g g 
+ng g g guardName
 ```
 
 # Checklists
