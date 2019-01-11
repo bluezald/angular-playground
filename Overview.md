@@ -173,6 +173,88 @@ x.subscribe(nextFn)
 x.subscribe(nextFn, errorFn)
 x.subscribe(nextFn, errorFn, completeFn)
 ```
+### Navigation and Routing
+- configure a route for each component
+- define options/actions
+- Tie a route to each option/action
+
+#### Configuring Routes
+- before we can navigate to a route, we need to ensure that the routes are available in the application.
+We do this by passing the routes to the RouterModule like this:
+```javascript
+@NgModule({
+    imports: [
+        // Other Modules
+        RouterModule.forRoot([])
+    ]
+})
+// If you want to use hash style routes:
+RouterModule.forRoot([], { usehash: true })
+```
+- Creating Routes
+```javascript
+[
+    { path: 'products', component: ProductListComponent },
+    { path: 'products/:id', component: ProductDetailComponent },
+    // the /:id - is a parameter
+    { path: 'welcome', component: WelcomeComponent },
+    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+    // redirect to another path - this is a default route
+    { path: '**', component: PageNotFoundComponent }
+    // wildcard route when there's no other route matched from the defined routes
+    // also make sure you define the routes from specific to
+    // less specific cause the order matters
+]
+```
+- Passing Parameters to a Route
+```javascript
+<a [routerLink] = "['/products', product.productId]">{{product.productName}}</a>
+// you pass in the router link, the route, and the parameters
+```
+- to read the parameters in your code you use:
+```javascript
+import { ActivatedRoute } from '@angular/router';
+constructor(private route: ActivatedRoute) {
+    console.log(this.route.snapshot.paramMap.get('id'));
+}
+```
+- there are 2 ways to get the parameter. You can either get an observable or a snapshot of the variable. Use the snapshot if you only need the initial value of the parameter
+- Activating Route with Code
+```javascript
+onBack(): void {
+    this.router.navigate(['/products']);
+}
+```
+### Route Guards
+- use to guard in routing, like when you try to transfer to another page
+
+- CanActivate - guard navigation to a route
+- CanDeactivate - guard navigation from a route
+- Resolve - pre-fetch data before activating a route
+- canLoad - prevent asynchronous routing
+
+- Building a Guard Class
+```javascript
+import { Injectable } from '@angular/core';
+import { CanActivate } from '@angular/router';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ProductDetailGuard implements CanActivate {
+    canActivate(): boolean {
+        //...
+    }
+}
+```
+- To use the guard, you add it when you add in the routes
+```javascript
+{ path: 'products/:id', canActivate: [ProductDetailGuard], component: ProductDetailComponent }
+```
+- generate guard using the cli
+```sh
+ng g g 
+```
 
 # Checklists
 
