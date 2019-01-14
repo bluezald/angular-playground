@@ -33,6 +33,30 @@
     - Native Destop Apps
 
 ## Angular CLI
+
+- Installing CLI
+    - needs node 8.x or higher
+    - npm 5.x or higher
+```sh
+npm i -g @angular/cli
+```
+- Generating a Project/App - with a set prefix for the components
+```sh
+ng new my-app --prefix bin #sets the prefix to bin-root, or bin-*
+```
+- Tip for creating a project
+```sh
+ng new my-app --routing --prefix xyz # Add the routing on first generate
+```
+
+- The Angular CLI generates code from blueprints
+- Basic blueprints we can generate
+```sh
+ng generate component customer
+ng generate service customer-data
+ng generate class customer-model
+```
+
 - Installing component
 ```sh
 ng g c About  # ng (Angular) generate component About
@@ -49,9 +73,10 @@ ng generate service
 ```sh
 ng g m /products/product --flat -m app.module # generate a product module in the app module
 ```
+
 ### Key Angular CLI Commands
 - ng help
-- ng new
+- ng new my-app // generates a new app
 - ng serve
 - ng generate
 - ng test
