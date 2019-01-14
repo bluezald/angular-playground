@@ -31,8 +31,9 @@
     - Server-side
     - Native Mobile Apps
     - Native Destop Apps
+- Schematics is a workflow tool for the modern web; it can apply transforms to your project, such as create a new component, or updating your code to fix breaking changes in a dependency. Or maybe you want to add a new configuration option or framework to an existing project.
 
-## Angular CLI
+# Angular CLI
 
 - Installing CLI
     - needs node 8.x or higher
@@ -40,6 +41,7 @@
 ```sh
 npm i -g @angular/cli
 ```
+### New
 - Generating a Project/App - with a set prefix for the components
 ```sh
 ng new my-app --prefix bin #sets the prefix to bin-root, or bin-*
@@ -56,7 +58,7 @@ ng generate component customer
 ng generate service customer-data
 ng generate class customer-model
 ```
-
+### Components
 - Installing component
 ```sh
 ng g c About  # ng (Angular) generate component About
@@ -65,15 +67,96 @@ or
 ```sh
 ng generate component componentName
 ```
+### Directive
+- Generate a Directive
+```sh
+ng generate directive search-box --flat false
+```
+- you can use the flag **--flat** to add the newly generated blueprint to its own folder or not.
+
+### Service
 - Creating Service
 ```sh
 ng generate service
 ```
+### Classes, Interfaces and Enums
+```sh
+ng g cl models/customer #generates a class
+ng g i models/person #generates an interface
+ng g e models/gender #generates enums
+```
+### Pipes
+```sh
+n g p shared/init-caps #generates a pipe called init-caps in shared folder
+#ng generate pipe shared/pipe-name
+```
+### Module
 - Creating Module
 ```sh
 ng g m /products/product --flat -m app.module # generate a product module in the app module
 ```
+- when you add in the **-m** flag, it specifies which module the newly generated module will be put into
 
+### Generating Routing Features
+- you can specify to add in routing module when you create a module through the **--routing** flag
+
+### Building and Serving
+- Exploring the source in the output
+```sh
+npm i webpack-bundle-analyzer --save-dev
+ng build --stats-json
+npx webpack-bundle-analyzer dist/my-app/stats.json # You can add this in your scripts in package.json like "npm start stats"
+```
+or
+```sh
+npm i source-map-explorer --save-dev
+ng build
+npx source-map-explorer dist/my-app/main.js
+```
+You can use this to check on the file size of your bundles and optimize accordingly
+***
+**Environment** indicates which file to use between environment.prod.ts and environment.ts
+and **Target** defines how (and if) the files are optimized
+
+
+Feature | ng build | ng build --prod | Options
+---------|----------|---------|---------
+Environment| environment.ts | environment.prod.ts
+Cache-busting| only images referenced in css | all build files
+Source maps | generated | not generated | --source-map
+Extracted CSS | global CSS output to .js | yes, to css file(s)
+Uglification | no | yes
+Tree-Shaking | no | yes
+AOT | no | yes | --aot
+
+***
+Common ng serve Options
+Options | Description
+--------|-------------
+--open | Opens the default browser
+--port | Port to listen to when serving
+--live-reload | Reload when changes occur
+--ssl | Serve using HTTPs
+--proxy-config | Proxy configuration file
+
+### Adding new Capabilities
+```sh
+ng add @angular/pwa
+ng add @angular/material
+ng add @angular/elements
+ng add @ng-bootstrap/schematics
+```
+### Testing
+```sh
+ng test
+# you can also add in code coverage thru
+ng test --code-coverage
+```
+- The spec files are unit tests for your source files. The convention for Angular applications is to have a .spec.ts file for each .ts file. They are run using the Jasmine javascript test framework through the Karma task runner when you use the ng test command.
+### E2E Tests
+```sh
+ng e2e
+```
 ### Key Angular CLI Commands
 - ng help
 - ng new my-app // generates a new app
@@ -97,24 +180,6 @@ ng g m /products/product --flat -m app.module # generate a product module in the
 
 ### AOT Compiler (Ahead of Time Compiler)
 - compiler converts your Angular HTML and TypeScript code into efficient JavaScript code during the build phase before the browser downloads and runs that code. Compiling your application during the build process provides a faster rendering in the browser.
-
-## Tips, Tricks and Gotchas
-- Decorators are new type of syntax
-- Custom Pipes
-- RxJS
-
-### Tips
-- Use CLI
-- Follow Style Guide
-- Do sorting, filtering in your component
-- Learn Typescript
-- Learn Ngrx
-- Learn webpack
-- Use Lazy Loading
-- Use VS Code
-- Don't touch the DOM directly
-
-***
 
 ## Decorator
 - function that adds metadata to a class, its members or its method arguments
@@ -298,6 +363,42 @@ export class ProductDetailGuard implements CanActivate {
 ```sh
 ng g g guardName
 ```
+## Tooling Features
+- Updating Angular
+```sh
+ng update
+```
+
+# Tips and Tricks
+- Decorators are new type of syntax
+- Custom Pipes
+- RxJS
+- Use CLI
+- Follow Style Guide
+- Do sorting, filtering in your component
+- Learn Typescript
+- Learn Ngrx
+- Learn webpack
+- Use Lazy Loading
+- Use VS Code
+- Don't touch the DOM directly
+
+***
+
+- In VSCode, you can execute a shortcut structure for the html like this
+```html
+nav>ul>li*2>a[[routerLink]]
+```
+this will generate the following snippet when you press tab afterwards
+```html
+<nav>
+    <ul>
+        <li><a href="" [routerLink]=""></a></li>
+        <li><a href="" [routerLink]=""></a></li>
+    </ul>
+</nav>
+```
+- to check for a guide when upgrading your project to a newer version of angular, check https://update.angular.io/
 
 # Checklists
 

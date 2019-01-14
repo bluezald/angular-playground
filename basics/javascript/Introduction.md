@@ -14,7 +14,7 @@
 
 # How the web works
 
-## WWW 
+## WWW
 - information space
 - documents / web resources are identified by URLs
 - interlinked by hypertext links
@@ -30,12 +30,12 @@
 # Why you should learn about how it works
 
 - HTML
-  - CSS - to style the document
-  - Javascript - to add functionality
+    - CSS - to style the document
+    - Javascript - to add functionality
 
 # Where HTML came from?
 
-- standard markup language 
+- standard markup language
 - scripting language
 - 1990 - first specs of html - Tim Berners-Lee
 - 1993 - first draft of html - IETF

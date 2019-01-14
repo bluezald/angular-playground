@@ -12,20 +12,20 @@ const pi = 3.14
 ```
 
 ### let vs var
- - let has block scoping or lexical scoping, this is a modern approach compared to var
- - var can be hoisted, let can't
+- let has block scoping or lexical scoping, this is a modern approach compared to var
+- var can be hoisted, let can't
 
- ### Rest Parameters
+### Rest Parameters
 
- - this will accept multiple values in a function call and convert all those parameters into an array when refered inside the function. Rest parameters must be the last parameter. Cause it's read "as the rest of the parameters"
+- this will accept multiple values in a function call and convert all those parameters into an array when refered inside the function. Rest parameters must be the last parameter. Cause it's read "as the rest of the parameters"
 
- ```javascript
- function aggregateScore(...allScore) {
-     allScore.forEach( id => console.log(id) );
- }
+```javascript
+function aggregateScore(...allScore) {
+    allScore.forEach( id => console.log(id) );
+}
 
 aggregateScore(100, 75, 80);
- ```
+```
 
 ### Destructuring Arrays
 
@@ -140,12 +140,12 @@ car.start();
 ```
 
 #### Polyfill
- - is typical used prototypes.
- - this is like extension in Swift on native iOS api or classes
+- is typical used prototypes.
+- this is like extension in Swift on native iOS api or classes
 
- ### JSON
- - Javascript Object Notation
- ```javascript
+### JSON
+- Javascript Object Notation
+```javascript
  let car = {
      id: 123,
      style: "convertible"
@@ -319,7 +319,7 @@ HTML
     <input type="text" name="lastname" >
     <br>
     <input type="submit" value="Submit">
-</form> 
+</form>
 ```
 
 Javascript
@@ -327,7 +327,7 @@ Javascript
 let form = document.getElementById("user-form");
 
 form.addEventListener("submit", event => {
-    
+
     let firstname = form.elements["firstname"];
     let lastname = form.elements["lastname"];
 
@@ -362,3 +362,5 @@ eval(inputString);
 // when you're using webpack you can generate a production build
 npm run build
 ```
+### Yarn vs NPM
+https://scotch.io/@brian_kimo/npm-vs-yarn
