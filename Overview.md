@@ -289,7 +289,27 @@ And in your component's html:
 <!-- Assuming that the event's list component has event thumbnail components in it -->
 <app-event-thumbnail (eventClick)=handleEventClicked($event) [event]=event1></app-event-thumbnail>
 ```
+### Template Variables
+```html
+<!-- You set a variable to the component using the # -->
+<app-event-thumbnail #thumbnail [event]=event1></app-event-thumbnail>
+<!-- Here we have the #thumbnail as an event thumbnail component variable, thus we can call methods of an event thumbnail component -->
 
+<!-- Sample usage here, of the template variable -->
+<button class="btn btn-primary" (click)=thumbnail.logFoo()>Log me some foo</button>
+```
+```javascript
+// Example EventThumbnailComponent
+
+// other code ...
+export class EventThumbnailComponent {
+    @Input() event: any;
+
+    logFoo() {
+        console.log('fooooo');
+    }
+}
+```
 ### Getters and Setters
 - if you need to perform additional operation when a property is modified, you can use Two-Way Binding with getters and setters
 ```javascript
@@ -306,6 +326,54 @@ set listFilter(value: string) {
 ### for...of vs for...in
 - **for...of** iterates over the iterable objects, such as an array
 - **for...in** iterates over the properties of an object
+- ***ngFor** - the asterisk indicates that this is a structural directive - Structural Directive changes the shape of the DOM
+
+### *ngSwitch and *ngClass
+- *ngClass is a conditional setting for a css class to be applied in an element. In this example:
+```html
+<div [ngClass]="getStartTimeClass()" [ngSwitch]="event?.time">
+    Time: {{event?.time}}
+    <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
+    <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
+    <span *ngSwitchDefault>(Normal Start)</span>
+</div>
+```
+and in your component class you can define a function that will determine the class of your element
+```javascript
+import { Component, Input } from '@angular/core';
+
+@Component({
+    selector: 'app-event-thumbnail',
+    templateUrl: './event-thumbnail.component.html',
+    styles: [`
+        .green { color: #55efc4 !important; }
+        .bold { font-weight: bold; }
+        .thumbnail { min-height: 210px; }
+        .well div { color: #bbb; }
+    `]
+})
+export class EventThumbnailComponent {
+    @Input() event: any;
+
+    getStartTimeClass() {
+        const isEarlyStart = this.event && this.event.time === '8:00 am';
+        return {green: isEarlyStart, bold: isEarlyStart};
+    }
+}
+```
+- You can also use ***ngStyle**
+```html
+<div [ngStyle]="getStartTimeStyle()" [ngSwitch]="event?.time">
+```
+and in your js:
+```javascript
+getStartTimeStyle() {
+    if (this.event && this.event.time === '8:00 am') {
+        return {'color': '#55efc4', 'font-weight': 'bold'};
+    }
+    return {};
+}
+```
 
 ## Interface
 ```javascript
