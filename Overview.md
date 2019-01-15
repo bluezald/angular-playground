@@ -368,6 +368,16 @@ ng g g guardName
 ```sh
 ng update
 ```
+### Workspaces
+- You can have multiple projects when working in Angular.
+- Inside, for example on a project, you can generate a new sub-project using the:
+```sh
+ng generate application sub-app
+```
+### Libraries
+```sh
+ng generate library my-lib
+```
 
 # Tips and Tricks
 - Decorators are new type of syntax
@@ -382,6 +392,7 @@ ng update
 - Use Lazy Loading
 - Use VS Code
 - Don't touch the DOM directly
+- Versioning your App: https://christianlydemann.com/versioning-your-angular-app-automatically-with-standard-version/
 
 ***
 
