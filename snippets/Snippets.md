@@ -18,3 +18,15 @@
 /^.*(?=.{6,})(?=.*d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/
 ```
 - To add more soon
+
+# Pipes
+- list of common pipes to take note of:
+```javascript
+{{product.price | lowercase}}
+{{productName | uppercase}}
+{{product.price | currency }}
+// currency pipe also accepts parameters
+{{product.price | currency:'USD':'symbol':'1.2-2'}}
+// specifies the symbol of the currency,
+// the digit and the minimum-maximum fraction
+```
