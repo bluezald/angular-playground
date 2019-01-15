@@ -1,5 +1,6 @@
 # Notes
 - AngularJS refers to the javascript code of Angular which are the versions 1.x and Angular refers to the newer version of Angular. And uses Typescript.
+- Typescript is a superset of javascript, and it outputs javascript code thru transpilation. (Syntactic sugar)
 
 ### Universal Benefits
 - Reduction of Cost in building an application
@@ -32,6 +33,20 @@
     - Native Mobile Apps
     - Native Destop Apps
 - Schematics is a workflow tool for the modern web; it can apply transforms to your project, such as create a new component, or updating your code to fix breaking changes in a dependency. Or maybe you want to add a new configuration option or framework to an existing project.
+
+```
+// The compilation flow when starting angular project
+angular.json -> main.ts -> AppModule (main root module) -> Main Component
+```
+- the reason you're able to do this:
+```javascript
+imageUrl: '/assets/images/angularconnect-shield.png'
+```
+is because in your angular.json, by default, you have declared an assets variable relative to your angular.json
+```json
+"assets": [ "src/favicon.ico",
+            "src/assets"]
+```
 
 # Angular CLI
 
@@ -212,6 +227,69 @@ ng e2e
 ```javascript
 import { FormsModule } from '@angular/forms';
 ```
+### Passing Parameters to Child Components
+```javascript
+// Add the @Input Decorator
+import { Component, Input } from '@angular/core';
+
+@Component({
+    selector: 'app-location',
+    template: `
+    <div>
+        <span>Location: {{location.address}}</span>
+        <span>&nbsp;</span>
+        <span>{{location.city}}, {{location.country}}</span>
+    </div>
+    `
+})
+export class LocationComponent {
+    @Input() location: any;
+}
+// Usage:
+// example you have an event object with location object in it
+<app-location [location]=event.location></app-location>
+```
+### Handling Events from Child Component to Parent Component
+In your Child component you have:
+```javascript
+// Javascript
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+    selector: 'app-event-thumbnail',
+    templateUrl: './event-thumbnail.component.html'
+})
+export class EventThumbnailComponent {
+    @Input() event: any;
+    @Output() eventClick = new EventEmitter();
+
+    @Output handleClickMe(): void {
+        this.eventClick.emit('foo');
+    }
+}
+```
+And in your component's html:
+```html
+<button class="btn btn-primary" (click)="handleClickMe()">Click me!</button>
+```
+In your Parent component you handle it like this:
+```javascript
+import { Component } from '@angular/core';
+
+// other code here...
+
+export class EventsListComponent {
+    handleEventClicked(data) {
+        console.log(data);
+    }
+}
+```
+And in your component's html:
+```html
+<!-- Assuming that the event's list component has event thumbnail components in it -->
+<app-event-thumbnail (eventClick)=handleEventClicked($event) [event]=event1></app-event-thumbnail>
+```
+
 ### Getters and Setters
 - if you need to perform additional operation when a property is modified, you can use Two-Way Binding with getters and setters
 ```javascript
