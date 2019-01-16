@@ -30,6 +30,15 @@ npm install xyz --save
 - getbootstrap.com
 - fontawesome.com [Cheatsheet](https://fontawesome.com/cheatsheet)
 
+### Organizing your Code
+- use barrels in your imports
+
+## Debugging
+To be able to debug in the console (example in Chrome's console). Serve your application like this:
+```sh
+ng server -o --aot false #disable aot so that you can see the files as is
+```
+
 ## Deployment
 
 The generation of the changelog should happen automatically as the branch is merged into the master. The CI server should automatically create the changelog, commit it and push it to the remote git repository. This way the team doesn’t have to manage the versioning manually, except when a release should be marked as a major release. When doing this you simply specify the major number in package.json’s version property.

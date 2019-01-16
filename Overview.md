@@ -443,7 +443,7 @@ export class ToastrService {
 - Promise is cancellable, Observable is cancellable
 - Observable supports map, filter, reduce and more.
 
-### AppModule
+### Module
 ```javascript
 @NgModule({
     declarations: [ // Use specific to this module
@@ -467,6 +467,20 @@ export class ToastrService {
 - imports—import BrowserModule to have browser specific services such as DOM rendering, sanitization, and location.
 - providers—the service providers.
 - bootstrap—the root component that Angular creates and inserts into the index.html host web page.
+***
+- The code difference between the main app module vs a feature module:
+```javascript
+// App Module
+imports: [
+    BrowserModule,
+    RouterModule.forRoot()
+]
+// Feature Module
+imports: [
+    CommonModule,
+    RouterModule.forChild()
+]
+```
 
 ### Subscribing to an Observable
 ```javascript
@@ -559,6 +573,38 @@ export class ProductDetailGuard implements CanActivate {
 ```sh
 ng g g guardName
 ```
+#### Not using a Guard Service
+```javascript
+// add a string for the key of your guard function
+{ path: 'events/create', component: CreateEventComponent, canDeactivate: ['canDeactivateCreateEvent'] }
+
+// And in your app module, add in your providers:
+providers: [
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
+    // btw, this is the long-hand notation of adding a provider in the array
+]
+
+// and the useValue here is the function that you gonna use for the guard.
+// You can define it somewhere.
+```
+- canDeactivate function will pass in a parameter the component. So you can gain access to its properties, and decide how to deactivate base on the properties it has
+
+### Resolver
+- is that intermediate code, which can be executed when a link has been clicked and before a component is loaded.
+- an Interface that class can implement to be a data provider.
+```javascript
+@Injectable()
+class TeamResolver implements Resolve<Team> {
+    constructor(private backend: Backend) {}
+
+    resolve(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot): Observable<any> | Promise<any> {
+        return this.backend.fetchTeam(route.params.id);
+    }
+}
+```
+
 ## Tooling Features
 - Updating Angular
 ```sh

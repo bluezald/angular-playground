@@ -10,6 +10,11 @@
 ```javascript
 const pi = 3.14
 ```
+- cast something to boolean
+```javascript
+let truthy = "true";
+let booleanValue = !!truthy;
+```
 
 ### let vs var
 - let has block scoping or lexical scoping, this is a modern approach compared to var
