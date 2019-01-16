@@ -12,6 +12,11 @@ This will be my personal learning documentation for angular, and a potential lib
         - [Design Patterns](https://github.com/bluezald/angular-playground/blob/master/basics/javascript/design-patterns/DesignPatterns.md)
     - HTML
     - CSS
+- Angular
+    - Overview
+    - Cheatsheet
+    - Snippets
+    - Best Practices
 
 As I go along, I'll be starting with this [roadmap](https://github.com/sulco/angular-developer-roadmap)
 

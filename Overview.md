@@ -404,6 +404,34 @@ export class EventsListComponent {
     }
 }
 ```
+### Wrapping Third Party in a Service
+- You do this so that you won't declare the third-party as a global object and so that it can be testable. That's why it's advised to wrap your third-party around to a service
+```javascript
+import { Injectable } from '@angular/core';
+
+declare let toastr: any;
+
+@Injectable()
+export class ToastrService {
+    success(message: string, title?: string) {
+        toastr.success(message, title);
+    }
+
+    info(message: string, title?: string) {
+        toastr.info(message, title);
+    }
+
+    warning(message: string, title?: string) {
+        toastr.warning(message, title);
+    }
+
+    error(message: string, title?: string) {
+        toastr.error(message, title);
+    }
+}
+
+// Then make sure to import the service also in the providers array of your module
+```
 
 ## Observables and other Reactive Extensions
 - by convention, add a dollar sign after an observable variable like: ```source$```
@@ -446,7 +474,8 @@ x.subscribe(nextFn)
 x.subscribe(nextFn, errorFn)
 x.subscribe(nextFn, errorFn, completeFn)
 ```
-### Navigation and Routing
+***
+## Navigation and Routing
 - configure a route for each component
 - define options/actions
 - Tie a route to each option/action
@@ -479,6 +508,8 @@ RouterModule.forRoot([], { usehash: true })
     // less specific cause the order matters
 ]
 ```
+- pathMatch - (prefix | full) - prefix means redirect if the URL starts with the specified path. And full if it fully matches.
+
 - Passing Parameters to a Route
 ```javascript
 <a [routerLink] = "['/products', product.productId]">{{product.productName}}</a>
