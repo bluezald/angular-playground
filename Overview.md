@@ -375,19 +375,35 @@ getStartTimeStyle() {
 }
 ```
 
-## Interface
+## Interfaces
 ```javascript
 export interface IProduct {
 
 }
 ```
-## Lifecycle Hook
+## Lifecycle Hooks
 - OnInit interface
 
-## Service
+## Services
 - a class with a focused purpose
 - applied using the dependency injection
 - add the @Injectable decorator
+- defines a business logic in a separate file, and inject a service whenever we need it
+- When injecting a service you add it in the constructor of the component
+
+### Constructor
+- it's not a good practice to add in long-running code inside your constructor
+```javascript
+constructor(private eventService: EventService) {}
+
+// is a shorthand for this:
+export class EventsListComponent {
+    private eventService: EventService;
+    constructor(private eventService: EventService) {
+        this.eventService = eventService;
+    }
+}
+```
 
 ## Observables and other Reactive Extensions
 - by convention, add a dollar sign after an observable variable like: ```source$```
@@ -412,6 +428,9 @@ export interface IProduct {
         BrowserModule,
         FormsModule,
         HttpClientModule
+    ],
+    providers: [ // Services
+        EventService
     ],
     bootstrap: [AppComponent]
 })
