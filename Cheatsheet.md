@@ -30,8 +30,32 @@ npm install xyz --save
 - getbootstrap.com
 - fontawesome.com [Cheatsheet](https://fontawesome.com/cheatsheet)
 
+
 ### Organizing your Code
-- use barrels in your imports
+- use barrels in your imports. Create an index.ts file, and export all the components and services of that directory
+
+```javascript
+// index.ts
+export * from './create-event/create-event.component';
+export * from './events-list/events-list.component';
+export * from './event-thumbnail/event-thumbnail.component';
+export * from './event.service';
+export * from './event-details/event-details.component';
+export * from './event-route-activator.service';
+export * from './events-list-resolver.service';
+```
+- then in your module, import the components and services like this
+```javascript
+import {
+    CreateEventComponent,
+    EventsListComponent,
+    EventThumbnailComponent,
+    EventService,
+    EventDetailsComponent,
+    EventRouteActivator,
+    EventsListResolver
+} from './events/index';
+```
 
 ## Debugging
 To be able to debug in the console (example in Chrome's console). Serve your application like this:

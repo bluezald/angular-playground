@@ -223,7 +223,10 @@ ng e2e
 ```html
 <input [(ngModel)]='listFilter'>
 ```
-- also make sure you import FormsModule in your AppModule
+- also make sure you import FormsModule in your Module
+- parentheses are used to bind in the HTML to component direction and typically used in responding to events
+- The square brackets are used to bind from component to HTML, and used for displaying data
+
 ```javascript
 import { FormsModule } from '@angular/forms';
 ```
@@ -603,6 +606,35 @@ class TeamResolver implements Resolve<Team> {
         return this.backend.fetchTeam(route.params.id);
     }
 }
+```
+## Forms
+- **Reactive forms** are more robust: they're more scalable, reusable, and testable. <mark>If forms are a key part of your application</mark>, or you're already using reactive patterns for building your application, use reactive forms.
+
+- **Template-driven forms** are useful for adding a simple form to an app, such as an email list signup form. They're easy to add to an app, but they don't scale as well as reactive forms. If you have very basic form requirements and logic that can be managed solely in the template, use template-driven forms.
+
+### Template-based Forms
+```html
+<h1>Login</h1>
+<hr>
+<div class="col-md-4">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" autocomplete="off" novalidate>
+    <div class="form-group" >
+        <label for="userName">User Name:</label>
+        <em *ngIf="loginForm.controls.userName?.invalid && loginForm.controls.userName?.touched || mouseoverLogin">Required</em>
+        <input (ngModel)="userName" name="userName" required id="userName" type="text" class="form-control" placeholder="User Name..." />
+        </div>
+        <div class="form-group" >
+        <label for="password">Password:</label>
+        <em *ngIf="loginForm.controls.password?.invalid && loginForm.controls.password?.touched || mouseoverLogin">Required</em>
+        <input (ngModel)="password" name="password" required id="password" type="password" class="form-control"placeholder="Password..." />
+        </div>
+
+        <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
+        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+        </span>
+        <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
+    </form>
+</div>
 ```
 
 ## Tooling Features
