@@ -13,10 +13,10 @@ This will be my personal learning documentation for angular, and a potential lib
     - HTML
     - CSS
 - Angular
-    - Overview
-    - Cheatsheet
-    - Snippets
-    - Best Practices
+    - [Overview](https://github.com/bluezald/angular-playground/blob/master/Overview.md)
+    - [Cheatsheet](https://github.com/bluezald/angular-playground/blob/master/Cheatsheet.md)
+    - [Snippets](https://github.com/bluezald/angular-playground/blob/master/snippets/Snippets.md)
+    - [Best Practices](https://github.com/bluezald/angular-playground/blob/master/BestPractices.md)
 
 As I go along, I'll be starting with this [roadmap](https://github.com/sulco/angular-developer-roadmap)
 

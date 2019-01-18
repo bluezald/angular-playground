@@ -1,4 +1,5 @@
-# RegEx
+# Javascript
+## RegEx
 - Common RegEx
 ```javascript
 // Digits
@@ -19,7 +20,7 @@
 ```
 - To add more soon
 
-# Pipes
+## Pipes
 - list of common pipes to take note of:
 ```javascript
 {{product.price | lowercase}}
@@ -30,3 +31,20 @@
 // specifies the symbol of the currency,
 // the digit and the minimum-maximum fraction
 ```
+
+# HTML
+## Forms
+- Common Form Validations
+### Template-based forms
+```html
+<!-- Basic -->
+<div class="form-group" [ngClass]="{'error': newEventForm.controls.name?.invalid && newEventForm.controls.name?.touched}">
+    <label for="eventName">Event Name:</label>
+    <em *ngIf="newEventForm.controls.name?.invalid && (newEventForm.controls.name?.touched)">Required</em>
+    <input (ngModel)="newEvent.name" name="name" required id="name" type="text" class="form-control" placeholder="Name of your event..." />
+</div>
+
+
+```
+
+### Reactive-based forms

@@ -637,6 +637,19 @@ class TeamResolver implements Resolve<Team> {
 </div>
 ```
 
+- if ever you encounter an error like this
+```
+Uncaught Error: Template parse errors:
+There is no directive with "exportAs" set to "ngForm" ("
+...
+```
+- make sure to add FormsModule in your AppModule
+- You can use object binding in your forms like this, take note it will only group the properties into a flat object. To be able to have nested object, use the ```ngModelGroup="nestedObjectName"``` directive
+```html
+
+```
+
+
 ## Tooling Features
 - Updating Angular
 ```sh
