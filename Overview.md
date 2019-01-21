@@ -33,6 +33,7 @@
     - Native Mobile Apps
     - Native Destop Apps
 - Schematics is a workflow tool for the modern web; it can apply transforms to your project, such as create a new component, or updating your code to fix breaking changes in a dependency. Or maybe you want to add a new configuration option or framework to an existing project.
+- Decorators are functions that modify JavaScript classes. Angular defines a number of decorators that attach specific kinds of metadata to classes, so that the system knows what those classes mean and how they should work.
 
 ```
 // The compilation flow when starting angular project
@@ -209,10 +210,12 @@ ng e2e
 - One way binding - from component class property to an element property
 
 ### Property Binding
+Property binding lets you interpolate values that are computed from your application data into the HTML.
 ```html
 <img [src]='product.imageUrl'>
 ```
 ### Event Binding
+Event binding lets your app respond to user input in the target environment by updating your application data.
 ```html
 <button class='btn btn-primary' (click)='toggleImage()'>
     Show Image
