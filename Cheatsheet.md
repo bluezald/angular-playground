@@ -29,7 +29,24 @@ npm install xyz --save
 ### Styling up your Project
 - getbootstrap.com
 - fontawesome.com [Cheatsheet](https://fontawesome.com/cheatsheet)
-
+```
+npm i font-awesome-icons --save
+npm i mdbootstrap --save
+npm install bootstrap
+```
+- make sure to add in the angular.json the css and js, like this:
+```json
+"styles": [
+    "node_modules/mdbootstrap/css/bootstrap.min.css",
+    "node_modules/mdbootstrap/css/mdb.min.css",
+    "src/styles.css"
+],
+"scripts": [
+    "node_modules/mdbootstrap/js/jquery-3.3.1.min.js",
+    "node_modules/mdbootstrap/js/bootstrap.min.js",
+    "node_modules/mdbootstrap/js/mdb.min.js"
+]
+```
 
 ### Organizing your Code
 - use barrels in your imports. Create an index.ts file, and export all the components and services of that directory
