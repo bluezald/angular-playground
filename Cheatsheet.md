@@ -1,4 +1,5 @@
 # Cheatsheet
+- Workflow Tips in Angular Development
 - this is a cheatsheet for web-app development, from common dependencies use in most applications, testing and workflow
 
 ## Prerequisites
@@ -46,6 +47,16 @@ npm install bootstrap
     "node_modules/mdbootstrap/js/bootstrap.min.js",
     "node_modules/mdbootstrap/js/mdb.min.js"
 ]
+```
+## Develop
+
+- Usual flow when creating a component
+```
+- generate a component
+- add in module
+- add a route to it
+- update the html file
+- define the functionality in the component.ts file
 ```
 
 ### Organizing your Code
