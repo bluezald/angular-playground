@@ -56,7 +56,17 @@ npm install bootstrap
 - add in module
 - add a route to it
 - update the html file
+- define a service if needed
 - define the functionality in the component.ts file
+```
+
+### Login
+```
+- create ui
+- create validation
+- create service + api
+- error handling
+
 ```
 
 ### Organizing your Code
