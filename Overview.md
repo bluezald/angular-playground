@@ -487,6 +487,26 @@ imports: [
     RouterModule.forChild()
 ]
 ```
+#### SharedModule
+```
+SharedModule is a conventional name for an NgModule with the components, directives, and pipes that you use everywhere in your app. This module should consist entirely of declarations, most of them exported.
+The SharedModule may re-export other widget modules, such as CommonModule, FormsModule, and NgModules with the UI controls that you use most widely.
+The SharedModule should not have providers for reasons explained previously. Nor should any of its imported or re-exported modules have providers.
+Import the SharedModule in your feature modules, both those loaded when the app starts and those you lazy load later.
+```
+#### CoreModule
+```
+CoreModule is a conventional name for an NgModule with providers for the singleton services you load when the application starts.
+Import CoreModule in the root AppModule only. Never import CoreModule in any other module.
+
+- Consider making CoreModule a pure services module with no declarations.
+
+For more information, see Sharing NgModules and Singleton Services.
+```
+#### Feature Modules
+```
+Feature modules are modules you create around specific application business domains, user workflows, and utility collections. They support your app by containing a particular feature, such as routes, services, widgets, etc. To conceptualize what a feature module might be in your app, consider that if you would put the files related to a certain functionality, like a search, in one folder, that the contents of that folder would be a feature module that you might call your SearchModule. It would contain all of the components, routing, and templates that would make up the search functionality.
+```
 
 ### Subscribing to an Observable
 ```javascript
