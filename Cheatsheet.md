@@ -132,6 +132,9 @@ docker container ls
 docker container ls --all
 docker container ls -aq
 
+## List Images as well
+docker image ls
+
 ## Pull an image
 docker pull xxx
 
@@ -140,7 +143,7 @@ docker ps -a
 
 ## Remove all containers and images
 
-## List all containers (only IDs)
+## List all running containers (only IDs)
 docker ps -aq
 
 ## Stop all running containers
@@ -153,5 +156,9 @@ docker rm $(docker ps -aq)
 docker rmi $(docker images -q)
 
 ```
-
 [Simple Getting Started](https://stackify.com/docker-tutorial/)
+
+If you have a docker-compose.yml you can use [docker-compose](https://docs.docker.com/compose/install/) instead
+```
+docker-compose up
+```
