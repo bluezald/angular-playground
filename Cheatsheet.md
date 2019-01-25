@@ -105,3 +105,39 @@ ng server -o --aot false #disable aot so that you can see the files as is
 
 The generation of the changelog should happen automatically as the branch is merged into the master. The CI server should automatically create the changelog, commit it and push it to the remote git repository. This way the team doesn’t have to manage the versioning manually, except when a release should be marked as a major release. When doing this you simply specify the major number in package.json’s version property.
 - [Source](https://christianlydemann.com/versioning-your-angular-app-automatically-with-standard-version/)
+
+### Docker
+```sh
+## List Docker CLI commands
+docker
+docker container --help
+
+## Display Docker version and info
+docker --version
+docker version
+docker info
+
+## Build a docker image in a Dockerfile in the current directory
+## with tag name friendlyhello
+docker build --tag=friendlyhello .
+
+## Execute Docker image
+docker run hello-world
+
+## List Docker images
+docker image ls
+
+## List Docker containers (running, all, all in quiet mode)
+docker container ls
+docker container ls --all
+docker container ls -aq
+
+## Pull an image
+docker pull xxx
+
+## List all running instances
+docker ps -a
+
+```
+
+[Simple Getting Started](https://stackify.com/docker-tutorial/)
