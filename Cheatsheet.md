@@ -94,6 +94,22 @@ import {
     EventsListResolver
 } from './events/index';
 ```
+### Find and Replace
+- Find and replace in Visual Studio Code using regex
+```js
+// Find: \{  *\w+ \}
+// Replace: *
+
+export { CourseModuleGuardService } from '../core/services/course-module-guard.service';
+export { CourseModuleComponent } from './course-module/course-module.component';
+export { CourseDetailComponent } from './course-detail/course-detail.component';
+// This will replace it with this
+export * from '../core/services/course-module-guard.service';
+export * from './course-module/course-module.component';
+export * from './course-detail/course-detail.component';
+
+```
+
 
 ## Debugging
 To be able to debug in the console (example in Chrome's console). Serve your application like this:
