@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
-
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
@@ -34,7 +33,6 @@ export class AuthenticationService {
 
     logout() {
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('currentUser');
         this.router.navigate(['/home']);
     }
 
