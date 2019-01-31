@@ -549,7 +549,7 @@ RouterModule.forRoot([], { usehash: true })
 ]
 ```
 - pathMatch - (prefix | full) - prefix means redirect if the URL starts with the specified path. And full if it fully matches.
-
+- The routerLink directive always treats the provided link as a delta to the current URL:
 - Passing Parameters to a Route
 ```javascript
 <a [routerLink] = "['/products', product.productId]">{{product.productName}}</a>
