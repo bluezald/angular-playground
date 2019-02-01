@@ -71,6 +71,7 @@ npm install bootstrap
 
 ### Organizing your Code
 - use barrels in your imports. Create an index.ts file, and export all the components and services of that directory
+- in case you encounter an [Uncaught Unexpected value 'undefined' declared by the module 'AppModule'](https://github.com/angular/angular-cli/issues/1831#)
 
 ```javascript
 // index.ts

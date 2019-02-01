@@ -540,6 +540,7 @@ RouterModule.forRoot([], { usehash: true })
     { path: 'products/:id', component: ProductDetailComponent },
     // the /:id - is a parameter
     { path: 'welcome', component: WelcomeComponent },
+    { path: 'heroes', component: HeroListComponent, data: { title: 'Heroes List' }},
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     // redirect to another path - this is a default route
     { path: '**', component: PageNotFoundComponent }
@@ -550,6 +551,8 @@ RouterModule.forRoot([], { usehash: true })
 ```
 - pathMatch - (prefix | full) - prefix means redirect if the URL starts with the specified path. And full if it fully matches.
 - The routerLink directive always treats the provided link as a delta to the current URL:
+- The data property in the fourth route is a place to store arbitrary data associated with this specific route. The data property is accessible within each activated route. **Use it to store items such as page titles, breadcrumb text, and other read-only, static data**
+
 - Passing Parameters to a Route
 ```javascript
 <a [routerLink] = "['/products', product.productId]">{{product.productName}}</a>
