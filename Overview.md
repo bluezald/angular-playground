@@ -558,6 +558,8 @@ RouterModule.forRoot([], { usehash: true })
 <a [routerLink] = "['/products', product.productId]">{{product.productName}}</a>
 // you pass in the router link, the route, and the parameters
 ```
+- When using routerLink directive, make sure RouterModule is in the imports of the module using it.
+
 - to read the parameters in your code you use:
 ```javascript
 import { ActivatedRoute } from '@angular/router';
