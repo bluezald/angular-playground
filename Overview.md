@@ -95,6 +95,8 @@ ng generate directive search-box --flat false
 ```sh
 ng generate service
 ```
+- services are app-scoped, which means that they can be accessed from every module.
+
 ### Classes, Interfaces and Enums
 ```sh
 ng g cl models/customer #generates a class
@@ -500,6 +502,7 @@ CoreModule is a conventional name for an NgModule with providers for the singlet
 Import CoreModule in the root AppModule only. Never import CoreModule in any other module.
 
 - Consider making CoreModule a pure services module with no declarations.
+- every lazy module has its own injector! What that means is that a service provided in a lazy module is only accessible in that module. But it can still access the services previously provided by non-lazy modules (such as AppModule)!
 
 For more information, see Sharing NgModules and Singleton Services.
 ```
