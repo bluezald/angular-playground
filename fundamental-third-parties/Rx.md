@@ -28,3 +28,9 @@ return this.http.post<IToken>(`${environment.baseUrl}/login`, user)
 ### Filtering Operators
 
 #### filter()
+
+## Important Notes:
+
+- One of the most often mistakes people make is when people take data out of an observable to send it to another observable.
+- Observables do not like being inside Observables.
+- Observable is kept alive until it completes.
