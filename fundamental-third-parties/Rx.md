@@ -29,6 +29,25 @@ return this.http.post<IToken>(`${environment.baseUrl}/login`, user)
 
 #### filter()
 
+### Utility
+
+#### tap()
+- Transparently perform actions or side-effects, such as logging.
+- One usage I had with this when trying to extract another object inside the returned observable
+```javascript
+this.apiService.getThisObject(id)
+    .pipe(
+    tap( (anObject: any) => {
+        this.innerObject = anObject.innerObject;
+    })
+    )
+    .subscribe(
+    data => {
+        this.mainObject = data;
+    }
+    );
+```
+
 ## Important Notes:
 
 - One of the most often mistakes people make is when people take data out of an observable to send it to another observable.
