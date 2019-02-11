@@ -117,6 +117,7 @@ To be able to debug in the console (example in Chrome's console). Serve your app
 ```sh
 ng server -o --aot false #disable aot so that you can see the files as is
 ```
+This is a [good article](https://medium.com/front-end-weekly/a-guide-to-debugging-angular-applications-5a36bd88b4cf) for tools to help in debugging
 
 ## Deployment
 
