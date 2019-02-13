@@ -30,6 +30,7 @@ mime: {
 
 - TODO: will add in another directory if this grows up:
 
+## HTML/DOM
 ### Check Text Content
 ```js
 it('should be display 404', () => {
@@ -37,3 +38,23 @@ it('should be display 404', () => {
     expect(compiled.querySelector('h1').textContent).toContain('404');
 });
 ```
+
+## Services
+
+### API/HTTP
+```js
+describe('getItems()', () => {
+    it('- should return an Observable<Item[]>', () => {
+        const dummyItems = mockItems; // from external source
+
+        service.getItems().subscribe(items => {
+            expect(items.length).toBe(10);
+        });
+
+        const req = httpMock.expectOne(`${environment.url}/items`);
+        expect(req.request.method).toBe('GET');
+        req.flush(mockItems);
+    });
+});
+```
+- You can use the HttpTestingController to mock requests and the flush method to provide dummy values as responses. As the HTTP request methods return an Observable, we subscribe to it and create our expectations in the callback methods
