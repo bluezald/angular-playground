@@ -15,6 +15,9 @@ fixture = TestBed.createComponent(AppError404Component);
 component = fixture.componentInstance;
 ```
 
+#### HttpTestingController
+- Controller to be injected into tests, that allows for mocking and flushing of requests.
+
 
 ## Configurations
 
