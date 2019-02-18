@@ -32,6 +32,21 @@
 // the digit and the minimum-maximum fraction
 ```
 
+## Search
+```js
+search(term: string) {
+    this.filteredCourses = this.allCourses
+    .filter( course => course.title.toLowerCase().includes(term.toLowerCase()));
+}
+```
+- in the html
+```html
+<input #searchBox
+type="text" id="search-box" class="form-control"
+(input)="search(searchBox.value)">
+<label for="search-box">Search</label>
+```
+
 # HTML
 ## Forms
 - Basic Form Controls
