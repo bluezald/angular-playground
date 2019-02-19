@@ -53,3 +53,4 @@ this.apiService.getThisObject(id)
 - One of the most often mistakes people make is when people take data out of an observable to send it to another observable.
 - Observables do not like being inside Observables.
 - Observable is kept alive until it completes.
+- https://scotch.io/tutorials/3-ways-to-pass-async-data-to-angular-2-child-components
