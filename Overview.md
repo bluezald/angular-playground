@@ -576,6 +576,11 @@ constructor(private route: ActivatedRoute) {
 onBack(): void {
     this.router.navigate(['/products']);
 }
+
+// With params
+this.router.navigate(['/root/child', crisis.id]);
+// With query params
+this.router.navigate(['/product-list'], { queryParams: { page: pageNum } });
 ```
 ### Route Guards
 - use to guard in routing, like when you try to transfer to another page
