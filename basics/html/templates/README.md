@@ -1,0 +1,1 @@
+The Event interface represents an event which takes place in the DOM.

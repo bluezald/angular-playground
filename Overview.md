@@ -582,6 +582,12 @@ this.router.navigate(['/root/child', crisis.id]);
 // With query params
 this.router.navigate(['/product-list'], { queryParams: { page: pageNum } });
 ```
+- you can add ```skipLocationChange: true ``` to not change the url in the address bar
+```html
+<!-- in html -->
+<a [routerLink]="['/item', params]" [queryParams]="{ id: item.id }" skipLocationChange>
+```
+
 ### Route Guards
 - use to guard in routing, like when you try to transfer to another page
 
