@@ -24,3 +24,17 @@ Sinon- use for test spies, stubs and mocks
 If you create a project using the angular cli and look at the e2e folder you will notice there are two files We have the spec file that protractor uses to run the tests. Then we have the ```.po.ts``` file. This is our page objects file.
 
 In our project the e2e folder structure is a little different. Make them to match your app folder which is actually good practice. This arranges our tests in an orderly fashion.
+
+## Sample Tests
+- using async and await for asynchronous tests
+```js
+it('when login is unsuccessful, should stay in login page', async () => {
+    loginPage.navigateTo();
+    const badCredentials = {
+        email: 'user@domain.com',
+        password: 'wrong-password'
+    };
+    await loginPage.loginWithCredentials(badCredentials);
+    expect(browser.driver.getCurrentUrl()).toEqual(browser.baseUrl + '/login');
+});
+```
