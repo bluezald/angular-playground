@@ -48,7 +48,12 @@ is because in your angular.json, by default, you have declared an assets variabl
 "assets": [ "src/favicon.ico",
             "src/assets"]
 ```
+## package.json
+- when installing npm packages make sure to know that, it's important to version manage your dependencies, because, a slight change can break your build.
 
+In the simplest terms, the tilde matches the most recent minor version (the middle number). ~1.2.3 will match all 1.2.x versions but will miss 1.3.0.
+The caret, on the other hand, is more relaxed. It will update you to the most recent major version (the first number). ^1.2.3 will match any 1.x.x release including 1.3.0, but will hold off on 2.0.0.
+[Learn more](https://stackoverflow.com/questions/22343224/whats-the-difference-between-tilde-and-caret-in-package-json)
 # Angular CLI
 
 - Installing CLI
