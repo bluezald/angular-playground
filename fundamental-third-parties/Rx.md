@@ -29,6 +29,14 @@ return this.http.post<IToken>(`${environment.baseUrl}/login`, user)
 
 #### filter()
 
+### Conditional and Boolean Operators
+
+#### takeuntil
+- The TakeUntil subscribes and begins mirroring the source Observable. It also monitors a second Observable that you provide. If this second Observable emits an item or sends a termination notification, the Observable returned by TakeUntil stops mirroring the source Observable and terminates.
+- The takeUntil() solution is great but unfortunately it comes also with a couple of disadvantages
+Most obviously, it’s quite verbose ! We have to create additional Subject and correctly implement OnDestroy interface in every component of our application which is quite a lot!
+
+
 ### Utility
 
 #### tap()
@@ -54,3 +62,20 @@ this.apiService.getThisObject(id)
 - Observables do not like being inside Observables.
 - Observable is kept alive until it completes.
 - https://scotch.io/tutorials/3-ways-to-pass-async-data-to-angular-2-child-components
+- .subscribe() - "Memory Leak"
+- Subscribing to an observable yields us Subscription object which has an unsubscribe() method. This method can be used to remove the subscription when we no longer need it.
+```js
+export class AppCompoment implements OnInit, OnDestroy {
+    private subscription: Subscription;
+
+    ngOnInit() {
+        this.subscription = this.service
+            .subscribe();
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
+}
+```
+- In general it is best to use | async pipe to subscribe and unwrap values in the component templates (with help of <ng-container> element)

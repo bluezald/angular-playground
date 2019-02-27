@@ -762,3 +762,5 @@ this will generate the following snippet when you press tab afterwards
 - Property Binding: <img [src]='product.imageUrl'>
 - Event Binding: <button (click)='toggleImage()'>
 - Two-Way Binding: <input [(ngModel)]='listFilter' />
+
+- The | async pipes automatically unsubscribes all active subscriptions when component is destroyed

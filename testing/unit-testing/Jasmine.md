@@ -61,3 +61,11 @@ describe('getItems()', () => {
 });
 ```
 - You can use the HttpTestingController to mock requests and the flush method to provide dummy values as responses. As the HTTP request methods return an Observable, we subscribe to it and create our expectations in the callback methods
+
+# General Notes
+- to be organized appropriately
+```js
+// When importing ToastrModule in Unit tests, make sure to call in forRoot() as well
+imports: [ ToastrModule.forRoot() ]
+// The forRoot method provides 4 "services": TOAST_CONFIG (InjectionToken), OverlayContainer, Overlay, and ToastrService. All are required for toasts to work propertly. (https://github.com/scttcper/ngx-toastr/issues/339)
+```
