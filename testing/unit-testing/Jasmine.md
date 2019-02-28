@@ -69,3 +69,9 @@ describe('getItems()', () => {
 imports: [ ToastrModule.forRoot() ]
 // The forRoot method provides 4 "services": TOAST_CONFIG (InjectionToken), OverlayContainer, Overlay, and ToastrService. All are required for toasts to work propertly. (https://github.com/scttcper/ngx-toastr/issues/339)
 ```
+
+## Common Error in Unit Testing with Karma
+```
+ailed: Unexpected value 'XYZ' imported by the module 'DynamicTestModule'. Please add a @NgModule annotation.
+```
+- The compilation error you get is thrown when you try to include something other than a component, directive, or pipe in the declarations array. Sometimes we get confuse, Services should be in providers, imports for modules and declaration for components

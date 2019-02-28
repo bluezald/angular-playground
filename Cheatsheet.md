@@ -26,8 +26,8 @@ npm install xyz --save
 
 # if no flag is specified, it won't add in the package.json file
 ```
-
-### Styling up your Project
+### Common Dependencies
+- @angular/material
 - getbootstrap.com
 - fontawesome.com [Cheatsheet](https://fontawesome.com/cheatsheet)
 ```
