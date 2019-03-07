@@ -69,6 +69,8 @@ npm install bootstrap
 
 ```
 
+- Coding convention link: https://angular.io/guide/styleguide#coding-conventions
+
 ### Organizing your Code
 - use barrels in your imports. Create an index.ts file, and export all the components and services of that directory
 - in case you encounter an [Uncaught Unexpected value 'undefined' declared by the module 'AppModule'](https://github.com/angular/angular-cli/issues/1831#)
@@ -108,7 +110,6 @@ export { CourseDetailComponent } from './course-detail/course-detail.component';
 export * from '../core/services/course-module-guard.service';
 export * from './course-module/course-module.component';
 export * from './course-detail/course-detail.component';
-
 ```
 
 

@@ -94,11 +94,16 @@ let app = (function() {
     return {};
 })();
 ```
+
 ### call() and apply()
 - call and apply are similar, the difference is that apply accepts a list of arguments.
 
 ### bind()
 - assigns a new this to a function and copies that function
+
+### Events
+- HTML events are "things" that happen to HTML elements.
+
 
 ### Arrow Functions
 ```javascript
@@ -173,7 +178,8 @@ car.start();
  let carIds = JSON.parse(jsonIn);
  console.log( carIds );
  ```
- ### Array with Closures
+
+### Array with Closures
  - forEach()
  ```javascript
  cars.forEach( car => console.log(car) );
@@ -300,6 +306,7 @@ console.log(car.id);
 let element = document.getElementById("first");
 element.style.color = "blue";
 ```
+
 ### Errors in Javascript
 - use try, catch to handle errors (optional add finally block)
 
@@ -312,6 +319,7 @@ try {
     console.log("error: ", error);
 }
 ```
+
 ### Promises
 - represents a value which we do not have access just yet
 
@@ -367,5 +375,6 @@ eval(inputString);
 // when you're using webpack you can generate a production build
 npm run build
 ```
+
 ### Yarn vs NPM
 https://scotch.io/@brian_kimo/npm-vs-yarn
