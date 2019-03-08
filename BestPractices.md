@@ -93,3 +93,11 @@ import { UserService } from './user.service';
 - monitor dist bundle sizes using source-map-explorer
 - OnPush Change Detection
 - Take note of pure and impure pipes
+
+---
+
+# Techniques
+
+### Service Workers
+- augment the traditional web deployment model and empower applications to deliver a user experience with the reliability and performance on par with natively-installed code.
+- is a script that runs in the web browser and manages caching for an application
