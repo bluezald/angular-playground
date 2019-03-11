@@ -120,6 +120,11 @@ ng g m /products/product --flat -m app.module # generate a product module in the
 ```
 - when you add in the **-m** flag, it specifies which module the newly generated module will be put into
 
+- Adding a routing module to an existing module called xyz
+```
+ng g m xyz-routing --module xyz --flat
+```
+
 ### Generating Routing Features
 - you can specify to add in routing module when you create a module through the **--routing** flag
 
