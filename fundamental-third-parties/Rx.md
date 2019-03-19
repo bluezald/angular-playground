@@ -79,3 +79,6 @@ export class AppCompoment implements OnInit, OnDestroy {
 }
 ```
 - In general it is best to use | async pipe to subscribe and unwrap values in the component templates (with help of <ng-container> element)
+
+#### Some Useful Resources:
+https://blog.angularindepth.com/learn-to-combine-rxjs-sequences-with-super-intuitive-interactive-diagrams-20fce8e6511
