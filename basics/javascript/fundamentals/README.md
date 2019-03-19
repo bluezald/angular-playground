@@ -32,6 +32,27 @@ function aggregateScore(...allScore) {
 aggregateScore(100, 75, 80);
 ```
 
+### Resting and Spreading
+- https://blog.bitsrc.io/6-tricks-with-resting-and-spreading-javascript-objects-68d585bdc83
+
+- **Adding Properties**
+```js
+const user = { id: 100, name: 'Howard Moon'}
+const userWithPass = { ...user, password: 'Password!' }
+
+user //=> { id: 100, name: 'Howard Moon' }
+userWithPass //=> { id: 100, name: 'Howard Moon', password: 'Password!' }
+```
+
+- **Merged Objects**
+```js
+const part1 = { id: 100, name: 'Howard Moon' }
+const part2 = { id: 100, password: 'Password!' }
+
+const user1 = { ...part1, ...part2 }
+//=> { id: 100, name: 'Howard Moon', password: 'Password!' }
+```
+
 ### Destructuring Arrays
 
 ```javascript
@@ -322,6 +343,11 @@ try {
 
 ### Promises
 - represents a value which we do not have access just yet
+
+```js
+new Promise(executor);
+// executor is - A function that is passed with the arguments resolve and reject.
+```
 
 ### Forms
 HTML
