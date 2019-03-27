@@ -8,6 +8,20 @@
 
 ### Creation Operators
 
+#### ajax()
+- Create an observable for an Ajax request with either a request object with url, headers, etc or a string for a URL.
+```js
+import { ajax } from 'rxjs/ajax';
+
+const githubUsers = `https://api.github.com/users?per_page=2`;
+
+const users = ajax(githubUsers)
+
+const subscribe = users.subscribe(
+    res => console.log(res),
+    err => console.error(err)
+);
+```
 
 ### Transformation Operators
 
