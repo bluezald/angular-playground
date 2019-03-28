@@ -6,6 +6,33 @@
 - [Operators](https://github.com/ReactiveX/rxjs/blob/master/doc/operators.md) are methods on the Observable type, such as .map(...), .filter(...), .merge(...), etc. When called, they do not change the existing Observable instance. Instead, they return a new Observable, whose subscription logic is based on the first Observable.
 - An Operator is a function which creates a new Observable based on the current Observable. This is a pure operation: the previous Observable stays unmodified.
 
+### Combination Operators
+
+#### forkJoin
+- This operator is best used when you have a group of observables and only care about the final emitted value of each. One common use case for this is if you wish to issue multiple requests on page load (or some other event) and only want to take action when a response has been received for all. In this way it is similar to how you might use Promise.all.
+
+```js
+// RxJS v6+
+import { delay, catchError } from 'rxjs/operators';
+import { forkJoin, of, throwError } from 'rxjs';
+
+/*
+  when all observables complete, give the last
+  emitted value from each as an array
+*/
+const example = forkJoin(
+  //emit 'Hello' immediately
+  of('Hello'),
+  //emit 'World' after 1 second
+  of('World').pipe(delay(1000)),
+  // throw error
+  _throw('This will error')
+).pipe(catchError(error => of(error)));
+//output: 'This will Error'
+const subscribe = example.subscribe(val => console.log(val));
+
+```
+
 ### Creation Operators
 
 #### ajax()
@@ -22,6 +49,12 @@ const subscribe = users.subscribe(
     err => console.error(err)
 );
 ```
+
+#### create()
+-
+
+#### defer()
+- to postpone
 
 ### Transformation Operators
 
