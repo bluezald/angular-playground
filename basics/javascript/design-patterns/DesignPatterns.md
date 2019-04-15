@@ -383,6 +383,9 @@ Visibility into State Changes | Observer Pattern |
 
     ```
 
+#### Other Patterns
+- [Domain-Oriented Observability](https://martinfowler.com/articles/domain-oriented-observability.html)
+
 
 ### Other Notes
 
