@@ -94,6 +94,19 @@ startCars(...carIds);
 ```
 - this is like the opposite of rest syntax
 
+### Using Logical OR (||) as null coalescing
+- Examples are from here: https://stackoverflow.com/questions/476436/is-there-a-null-coalescing-operator-in-javascript
+
+```js
+var whatIWant = null || new ShinyObject(); // is a new shiny object
+var whatIWant = undefined || "well defined"; // is "well defined"
+var whatIWant = 0 || 42; // is 42
+var whatIWant = "" || "a million bucks"; // is "a million bucks"
+var whatIWant = "false" || "no way"; // is "false"
+```
+- but there's definitely a feature in the newer version of javascript: https://github.com/tc39/proposal-nullish-coalescing
+
+
 ### typeof()
 ```javascript
 typeof(1); // number
@@ -199,6 +212,13 @@ car.start();
  let carIds = JSON.parse(jsonIn);
  console.log( carIds );
  ```
+
+### Arrays
+
+Arrays are non-primitive. If we assign a non-Primitive value to a variable, that variable doesn't actually holds the value, rather holds the reference.
+
+- References:
+    - https://blog.greenroots.info/ways-to-empty-an-array-in-javascript-and-the-consequences-cjwt45q9d002h2fs1kz5a77a2
 
 ### Array with Closures
  - forEach()
@@ -401,6 +421,9 @@ eval(inputString);
 // when you're using webpack you can generate a production build
 npm run build
 ```
+
+### Higher-Order Functions
+- Functions that operate on other functions, either by taking them as arguments or by returning them, are called higher-order functions. Since we have already seen that functions are regular values, there is nothing particularly remarkable about the fact that such functions exist. The term comes from mathematics, where the distinction between functions and other values is taken more seriously.
 
 ### Yarn vs NPM
 https://scotch.io/@brian_kimo/npm-vs-yarn
