@@ -134,6 +134,25 @@ let app = (function() {
 
 ### bind()
 - assigns a new this to a function and copies that function
+- Bind creates a new function that will have this set to the first parameter passed to bind().
+- Understanding bind, helps with the problem of 'losing this'
+- One good example: https://javascript.info/bind
+```js
+let user = {
+  firstName: "John",
+  sayHi() {
+    alert(`Hello, ${this.firstName}!`);
+  }
+};
+
+setTimeout(user.sayHi, 1000); // Hello, undefined!
+```
+- That’s because setTimeout got the function user.sayHi, separately from the object. The last line can be rewritten as:
+```js
+let f = user.sayHi;
+setTimeout(f, 1000); // lost user context
+```
+- ```func.bind(context, ...args)``` - returns a bound variant of  function ```func``` that fixes the context ```this```
 
 ### Events
 - HTML events are "things" that happen to HTML elements.
