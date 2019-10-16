@@ -2,6 +2,16 @@
 - Workflow Tips in Angular Development
 - this is a cheatsheet for web-app development, from common dependencies use in most applications, testing and workflow
 
+## Upgrading Angular to latest version
+
+- you can simply use
+```sh
+npm install -g angular-cli # - if its your first time
+npm install -g @angular/cli@latest # - if u already installed, so for updating
+```
+- References:
+    - https://stackoverflow.com/questions/43931986/how-to-upgrade-angular-cli-to-the-latest-version
+
 ## Prerequisites
 - make sure that you have followed the angular.io/guide/quickstart
 
@@ -124,60 +134,3 @@ This is a [good article](https://medium.com/front-end-weekly/a-guide-to-debuggin
 
 The generation of the changelog should happen automatically as the branch is merged into the master. The CI server should automatically create the changelog, commit it and push it to the remote git repository. This way the team doesn’t have to manage the versioning manually, except when a release should be marked as a major release. When doing this you simply specify the major number in package.json’s version property.
 - [Source](https://christianlydemann.com/versioning-your-angular-app-automatically-with-standard-version/)
-
-### Docker
-```sh
-## List Docker CLI commands
-docker
-docker container --help
-
-## Display Docker version and info
-docker --version
-docker version
-docker info
-
-## Build a docker image in a Dockerfile in the current directory
-## with tag name friendlyhello
-docker build --tag=friendlyhello .
-
-## Execute Docker image
-docker run hello-world
-
-## List Docker images
-docker image ls
-
-## List Docker containers (running, all, all in quiet mode)
-docker container ls
-docker container ls --all
-docker container ls -aq
-
-## List Images as well
-docker image ls
-
-## Pull an image
-docker pull xxx
-
-## List all running instances
-docker ps -a
-
-## Remove all containers and images
-
-## List all running containers (only IDs)
-docker ps -aq
-
-## Stop all running containers
-docker stop $(docker ps -aq)
-
-## Remove all containers
-docker rm $(docker ps -aq)
-
-## Remove all images
-docker rmi $(docker images -q)
-
-```
-[Simple Getting Started](https://stackify.com/docker-tutorial/)
-
-If you have a docker-compose.yml you can use [docker-compose](https://docs.docker.com/compose/install/) instead
-```
-docker-compose up
-```
