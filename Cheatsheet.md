@@ -134,3 +134,8 @@ This is a [good article](https://medium.com/front-end-weekly/a-guide-to-debuggin
 
 The generation of the changelog should happen automatically as the branch is merged into the master. The CI server should automatically create the changelog, commit it and push it to the remote git repository. This way the team doesn’t have to manage the versioning manually, except when a release should be marked as a major release. When doing this you simply specify the major number in package.json’s version property.
 - [Source](https://christianlydemann.com/versioning-your-angular-app-automatically-with-standard-version/)
+
+## SSR
+- when adding `nguniversal` to an existing project, you may encounter a problem about: `Not found contents for creating main.server.ts`
+- what worked for me was to edit the 2 files: `ts.config.server.json` and change `"src/main.server.ts` to just `"main.server.ts`
+- https://github.com/angular/angular/issues/21516#issuecomment-525375342

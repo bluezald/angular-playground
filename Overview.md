@@ -48,12 +48,28 @@ is because in your angular.json, by default, you have declared an assets variabl
 "assets": [ "src/favicon.ico",
             "src/assets"]
 ```
+
 ## package.json
 - when installing npm packages make sure to know that, it's important to version manage your dependencies, because, a slight change can break your build.
 
 In the simplest terms, the tilde matches the most recent minor version (the middle number). ~1.2.3 will match all 1.2.x versions but will miss 1.3.0.
 The caret, on the other hand, is more relaxed. It will update you to the most recent major version (the first number). ^1.2.3 will match any 1.x.x release including 1.3.0, but will hold off on 2.0.0.
 [Learn more](https://stackoverflow.com/questions/22343224/whats-the-difference-between-tilde-and-caret-in-package-json)
+
+## PWA and Service Workers
+
+### App Shell Model
+- The app "shell" is the minimal HTML, CSS and JavaScript required to power the user interface and when cached offline
+- An application shell architecture makes the most sense for apps and sites with relatively unchanging navigation but changing content.
+
+- References:
+    - https://developers.google.com/web/fundamentals/architecture/app-shell
+
+### ngsw-worker.js
+- the Angular Service Worker itself
+
+### ngsw
+
 # Angular CLI
 
 - Installing CLI
@@ -79,6 +95,7 @@ ng generate component customer
 ng generate service customer-data
 ng generate class customer-model
 ```
+
 ### Components
 - Installing component
 ```sh
@@ -88,6 +105,7 @@ or
 ```sh
 ng generate component componentName
 ```
+
 ### Directive
 - Generate a Directive
 ```sh
@@ -108,11 +126,13 @@ ng g cl models/customer #generates a class
 ng g i models/person #generates an interface
 ng g e models/gender #generates enums
 ```
+
 ### Pipes
 ```sh
 n g p shared/init-caps #generates a pipe called init-caps in shared folder
 #ng generate pipe shared/pipe-name
 ```
+
 ### Module
 - Creating Module
 ```sh
@@ -142,6 +162,7 @@ ng build
 npx source-map-explorer dist/my-app/main.js
 ```
 You can use this to check on the file size of your bundles and optimize accordingly
+
 ***
 **Environment** indicates which file to use between environment.prod.ts and environment.ts
 and **Target** defines how (and if) the files are optimized
@@ -174,6 +195,7 @@ ng add @angular/material
 ng add @angular/elements
 ng add @ng-bootstrap/schematics
 ```
+
 ### Testing
 ```sh
 ng test
@@ -181,10 +203,12 @@ ng test
 ng test --code-coverage
 ```
 - The spec files are unit tests for your source files. The convention for Angular applications is to have a .spec.ts file for each .ts file. They are run using the Jasmine javascript test framework through the Karma task runner when you use the ng test command.
+
 ### E2E Tests
 ```sh
 ng e2e
 ```
+
 ### Key Angular CLI Commands
 - ng help
 - ng new my-app // generates a new app
@@ -209,10 +233,23 @@ ng e2e
 ### AOT Compiler (Ahead of Time Compiler)
 - compiler converts your Angular HTML and TypeScript code into efficient JavaScript code during the build phase before the browser downloads and runs that code. Compiling your application during the build process provides a faster rendering in the browser.
 
+#### Compiler
+- Just-in-Time (JIT), which compiles your app in the browser at runtime.
+- Ahead-of-Time (AOT), which compiles your app at build time.
+
+#### How AOT Works
+- Phases:
+    - Phase 1: Code Analysis - (Expression Syntax limitations, no Arrow Functions and Code Folding)
+    - Phase 2: Code Generation
+    - Phase 3: Template Type Checking - Angular template compiler uses the TypeScript compiler to validate the binding expressions in templates
+
+- **Code Folding** - For example, the collector can evaluate the expression 1 + 2 + 3 + 4 and replace it with the result, 10. This process is called folding. An expression that can be reduced in this manner is foldable.
+
+- When you use AoT compilation, you can control how your application is compiled by specifying template compiler options in the tsconfig.json TypeScript configuration file.
+
 ## Decorator
 - function that adds metadata to a class, its members or its method arguments
 - Prefixed with an @
-
 
 ## Binding
 
@@ -399,6 +436,7 @@ export interface IProduct {
 
 }
 ```
+
 ## Lifecycle Hooks
 - OnInit interface
 
@@ -528,6 +566,7 @@ x.subscribe(nextFn, errorFn)
 x.subscribe(nextFn, errorFn, completeFn)
 ```
 ***
+
 ## Navigation and Routing
 - configure a route for each component
 - define options/actions
@@ -659,6 +698,7 @@ class TeamResolver implements Resolve<Team> {
     }
 }
 ```
+
 ## Forms
 - **Reactive forms** are more robust: they're more scalable, reusable, and testable. <mark>If forms are a key part of your application</mark>, or you're already using reactive patterns for building your application, use reactive forms.
 
